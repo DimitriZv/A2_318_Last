@@ -46,8 +46,8 @@ public class ProductController
     	productService.deleteProduct(id);
     }
 
-    @PutMapping("/products/{id}/productDetail/{productDetailId}")
+   /* @PutMapping("/products/{id}/details/{id}")
     Product updateProductDetail(@PathVariable Long id, @PathVariable Long productDetailId) {
         return productService.replaceProduct(null, productDetailId);
-    }
+    }*/
 }

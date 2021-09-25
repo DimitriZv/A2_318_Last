@@ -30,10 +30,10 @@ public class OnlineProductApplication {
 		return args -> {
 			//get an object of customer from rest request
 			ProductValue product = restTemplate.getForObject(
-					"http://localhost:8081/products/1", ProductValue.class);
+					"http://localhost:8080/products/1", ProductValue.class);
 			//get an object of contact from rest request
 			ProductDetailValue details = restTemplate.getForObject(
-					"http://localhost:8081/productDetails/3", ProductDetailValue.class);
+					"http://localhost:8080/details/4", ProductDetailValue.class);
 			product.setProductDetail(details);
 			log.info(product.toString());
 		};

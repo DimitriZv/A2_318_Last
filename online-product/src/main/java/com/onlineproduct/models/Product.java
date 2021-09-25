@@ -17,7 +17,8 @@ public class Product
     private double price;
     private int stockQuantity;
     @OneToOne
-    @JoinColumn(name = "productDetail_id")
+    @JoinColumn(name = "detail_id")
+    //@JoinColumn(name = "id")
     @JsonIgnore
     private ProductDetail productDetail;
 
@@ -28,7 +29,7 @@ public class Product
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
-        this.productDetail = null;
+        //this.productDetail = null;
     }
     //accessors and mutators of the product
     public Long getId() {
@@ -91,7 +92,8 @@ public class Product
                 && Objects.equals(this.productCategory, product.productCategory)
                 && Objects.equals(this.name, product.name)
                 && Objects.equals(this.stockQuantity, product.stockQuantity)
-                && Objects.equals(this.price, product.price);
+                && Objects.equals(this.price, product.price)
+                && Objects.equals(this.productDetail, product.productDetail);
     }
 
     @Override
