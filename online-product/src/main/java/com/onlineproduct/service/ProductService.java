@@ -6,6 +6,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.onlineproduct.models.ProductDetail;
+import com.onlineproduct.repositories.ProductDetailRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
@@ -21,10 +23,14 @@ public class ProductService implements ProductServiceIF
 	//product repository and assembler
 	private final ProductRepository productRepository;
     private final ProductModelAssembler assembler;
+	private final ProductDetailRepository detailRepository;
+    //private final
     //constructor of the product service
-    public ProductService(ProductRepository repository, ProductModelAssembler assembler) {
+    public ProductService(ProductRepository repository, ProductModelAssembler assembler,
+						  ProductDetailRepository detailRepository) {
         this.productRepository = repository;
         this.assembler = assembler;
+        this.detailRepository = detailRepository;
     }
     //find all the products
 	@Override
@@ -72,5 +78,14 @@ public class ProductService implements ProductServiceIF
 	public void deleteProduct(Long id) {
 		// TODO Auto-generated method stub
 		productRepository.deleteById(id);
+	}
+
+	@Override
+	public Product updateProductDetail(Long id, Long detailId) {
+		// TODO Auto-generated method stub
+		Product product = productRepository.findById(id).orElseThrow(RuntimeException::new);
+		ProductDetail details = detailRepository.findById(detailId).orElseThrow(RuntimeException::new);
+		product.setProductDetail(details);
+		return productRepository.save(product);
 	}
 }
